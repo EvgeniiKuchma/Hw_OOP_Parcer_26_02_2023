@@ -39,13 +39,16 @@ while (std::getline(input_file, line)) {
         else {
             // Split the line into key-value pairs
             size_t equals_pos = line.find('=');
-            if (equals_pos == std::string::npos ||equals_pos ==  0 ) {
+            if (equals_pos == std::string::npos || equals_pos ==  0 ) {
                 continue;// Skip lines without equals sign
             }
             std::string key = line.substr(0, equals_pos);
             std::string value = line.substr(equals_pos + 1);
-            if (key.empty() || value.empty()) {
-                continue; // Skip lines with empty key or value
+            if (key.empty()) {
+             std::string value = line.substr(equals_pos + 1);
+            
+            } if (value.empty()) {
+                std::string key = line.substr(0, equals_pos);
             }
             // Add the key-value pair to the map
             data_[current_section][key] = value;
@@ -53,18 +56,10 @@ while (std::getline(input_file, line)) {
     }
 input_file.close();
 }
-
-std::string ParcerIni::get_value(const std::string& section, const std::string& key) const{
-    if (data_.count(section) == 0 || data_.at(section).count(key) == 0) {
-        throw std::runtime_error("Section or key not found");
-    }
-    return data_.at(section).at(key);
-}
-
 std::map<std::string, std::map<std::string, std::string>>  ParcerIni::get_data() const {
    return data_;
 }
-void const ParcerIni::PrintFile(std::map<std::string, std::map<std::string, std::string>> &data_)  {
+void const ParcerIni::PrintFile()  {
     for (auto const& section : data_) {
         std::cout << "[" << section.first << "]" << std::endl;
         for (auto const& key_value : section.second) {
