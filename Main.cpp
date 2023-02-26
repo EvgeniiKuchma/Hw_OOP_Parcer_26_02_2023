@@ -6,9 +6,7 @@
 #include <memory>
 #include <map>
 
-
-
-// IDEAL STRONG FUCKIN SINOR INIFILES PARCER PUNCH BICH, YAEEHHH -> GO A HEAD//
+// IDEAL STRONG FUCKIN SINOR INIFILES PARCER PUNCH BICH, YAEEHHH -> GO A HEAD//(HuMor)
 
 int main() {
     try {
@@ -17,14 +15,10 @@ int main() {
         std::shared_ptr<ParcerIni> parc_Ini = std::dynamic_pointer_cast<ParcerIni>(parc);  
         parc_Ini->read();
         parc_Ini->get_data();
-        parc_Ini->PrintFile();
+        parc_Ini->print_file();
     }
     catch (std::bad_cast& e) {
         std::cerr << e.what() << std::endl;
     };
     return 0;
-    
-  
-    
-  
 }
