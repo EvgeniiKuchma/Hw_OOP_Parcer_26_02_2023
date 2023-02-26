@@ -1,12 +1,11 @@
 #pragma once
 #pragma once
+#include <filesystem>
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <map>
 #include <regex> //библиотека для работы сраного regexa
-#include <filesystem>
-
+#include <map>
 
 class I_Parcer
 {
