@@ -18,7 +18,7 @@ void ParcerIni::read()  {
     //  Эта строка проверяет, что расширение файла, полученное из path.extension(), не равно ".ini".Если расширение 
     //  файла не ".ini", то это может означать, что файл не является INI - файлом, и поэтому не может быть обработан 
     //  парсером INI.
-        std::cout << "\nThe file entered is not an ini file, please try again;";	
+        std::cout << "\nThe file entered is not an ini file, please try again: ";	
 	}
 	    else{
             if (input_file.is_open()) {
@@ -26,7 +26,7 @@ void ParcerIni::read()  {
 	
             }
 			    else {
-				     std::cout << "\nFile opening error, please try again";
+				     std::cout << "\nFile opening error, please try again: ";
                 }
         }
 	std::cin.ignore();
@@ -35,7 +35,7 @@ void ParcerIni::read()  {
 }     
 while (std::getline(input_file, line)) {
      // Remove leading and trailing whitespace
-        line = std::regex_replace(line, std::regex("^\\s+|\\s+$"), "");
+        line = std::regex_replace(line, std::regex("^\\s+|\\s+$|#.*|;.*|\\s+"), "");
      //  Эта строка использует регулярное выражение, 
      //  чтобы удалить пробельные символы в начале и конце строки line.
      //  ^ \\s + соответствует одному или нескольким пробельным символам в начале строки.
@@ -45,7 +45,7 @@ while (std::getline(input_file, line)) {
      //  Например, если строка line была " hello world ", то после этой строки её значение станет "hello world".
 
         // Ignore comments and blank lines
-        if (line.empty() || line[0] == ';' || line[0] == '#') {
+        if (line.empty() || line[0] == ';' || line[0] == '#' ) {
             continue;
         }
 
@@ -56,7 +56,7 @@ while (std::getline(input_file, line)) {
         else {
             // Split the line into key-value pairs
             size_t equals_pos = line.find('=');
-            if (equals_pos == std::string::npos || equals_pos ==  0) {
+            if (equals_pos == std::string::npos || equals_pos ==  0 ) {
     //  В строке equals_pos = line.find('='); 
     //  мы ищем позицию символа равенства (=) в строке line. Если символ не найден, 
     //  то метод find возвращает std::string::npos, что является константой, представляющей 
@@ -102,7 +102,7 @@ void const ParcerIni::PrintFile()  {
         std::cout << "[" << section.first << "]" << std::endl;
         for (auto const& key_value : section.second) {
             if (key_value.second.empty())
-            std::cout << key_value.first << " = " << "non initialized key" << std::endl;
+            std::cout << key_value.first << " = " << std::endl;
             else
             std::cout << key_value.first << " = " << key_value.second << std::endl;
         }
