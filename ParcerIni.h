@@ -5,7 +5,8 @@ class ParcerIni : public I_Parcer
 {
 public:
 	virtual void read() override;
-	void const print_file() ;
+	void print_file() const override;
+	void KeyInHedear(std::string& key) const;
 	std::map<std::string, std::map<std::string, std::string>> get_data()const;
 private:
 	std::string line;

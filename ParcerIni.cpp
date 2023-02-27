@@ -61,7 +61,7 @@ void ParcerIni::read() {
 std::map<std::string, std::map<std::string, std::string>>  ParcerIni::get_data() const {
    return data_;
 }
-void const ParcerIni::print_file()  {
+void ParcerIni::print_file() const   {
     for (auto const& section : data_) {
         std::cout << "[" << section.first << "]" << std::endl;
         for (auto const& key_value : section.second) {
@@ -73,7 +73,14 @@ void const ParcerIni::print_file()  {
         std::cout << std::endl;
    }
 }  
-
+void ParcerIni::KeyInHedear(std::string& key) const {
+    for (auto const& section : data_) {
+          std::cout << section.first.find(key) << "=" << section.second.find(key) << std::endl;   
+               
+            
+       std::cout << std::endl;
+    }
+}
 
 
 
