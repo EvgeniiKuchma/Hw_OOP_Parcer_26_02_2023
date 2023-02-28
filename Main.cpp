@@ -6,7 +6,7 @@
 #include <memory>
 #include <map>
 
-// IDEAL STRONG FUCKIN SINOR INIFILES PARCER PUNCH BICH, YAEEHHH -> GO A HEAD//(HuMor)
+// IDEAL STRONG FUCKIN SINOR INIFILES PARCER PUNCH BICH, YAEEHHH -> GO A HEAD//(HuMor)//
 
 int main() {
     try {
