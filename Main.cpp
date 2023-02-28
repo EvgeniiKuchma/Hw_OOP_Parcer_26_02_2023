@@ -16,13 +16,16 @@ int main() {
         parc->read();
         parc_ini->get_data();
         parc_ini->print_file();
-        std::string  a = "mode";
-        parc_ini->KeyInHedear(a);
+        parc_ini->KeyInHedear("mode");
         std::cout <<  parc_ini->hasKey(";", "Test.ini");
         parc_ini->HedearSearch("Difficulty");
+        parc_ini->ValueInFile("easy");
+        parc_ini->ValueInKey("ColorSpace");
+        parc_ini->ValueInKey("........");
     }
     catch (std::bad_cast& e) {
         std::cerr << e.what() << std::endl;
     };
     return 0;
 }
+//mutex - это примитив синхронизации

@@ -12,5 +12,5 @@ class I_Parcer
 public:
 	virtual	~I_Parcer() {}
 	virtual void read() = 0;
-	virtual void print_file()const = 0;
+	virtual void print_file() const = 0;
 };

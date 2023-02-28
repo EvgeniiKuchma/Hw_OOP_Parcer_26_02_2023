@@ -59,11 +59,11 @@ void ParcerIni::read() {
     }
 }
 
-std::map<std::string, std::map<std::string, std::string>>  ParcerIni::get_data() const {
+ const std::map<std::string, std::map<std::string, std::string>>&  ParcerIni::get_data() const {
    return data_;
 }
 
-void ParcerIni::print_file() const   {
+void ParcerIni::print_file() const {
     for (auto const& section : data_) {
         std::cout << "[" << section.first << "]" << std::endl;
         for (auto const& key_value : section.second) {
@@ -73,7 +73,7 @@ void ParcerIni::print_file() const   {
     }
 }  
 
-void ParcerIni::KeyInHedear(std::string& key) const {
+void ParcerIni::KeyInHedear(const std::string& key) const {
     auto it = data_.begin();
     while (it != data_.end()) {
         auto subMapIt = it->second.find(key);
@@ -91,7 +91,7 @@ void ParcerIni::KeyInHedear(std::string& key) const {
     }
 }
 
-bool ParcerIni::hasKey(std::string key, std::string filename) {
+bool ParcerIni::hasKey( const std::string key,const std::string filename) const {
     std::ifstream file(filename);
     std::string line;
     while (std::getline(file, line)) {
@@ -115,6 +115,30 @@ void ParcerIni::HedearSearch( const std::string& hedear) const {
             return;
         }
     std::cout << "\n\nHedear " << hedear << " not found in File" << std::endl;
+}
+
+void ParcerIni::ValueInFile(const std::string& value) const {
+    for (auto it = data_.begin(); it != data_.end(); it++) {
+        for (auto it_subMap = it->second.begin(); it_subMap != it->second.end(); it_subMap) {
+            if (it_subMap->second.find(value)) {
+                std::cout << "\n\nValue " << value << " found in file" << std::endl;
+                return;
+            }
+            std::cout << "\n\nValue " << value << " not found in file" << std::endl;
+        }
+    }
+}
+
+void ParcerIni::ValueInKey(const std::string& key) const {
+    for (const auto& section : data_) {
+        for (const auto& key_value : section.second) {
+            if (key_value.first == key) {
+                std::cout << "\n\nIn key " << key << " put on " << key_value.second << " value." << std::endl;
+               return;
+            }  
+        }
+    }
+    std::cout << "\nKey not found!" << std::endl;
 }
 
 
