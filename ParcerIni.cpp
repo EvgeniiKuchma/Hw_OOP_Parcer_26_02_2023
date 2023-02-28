@@ -38,7 +38,7 @@ void ParcerIni::read() {
         else {
             // Split the line into key-value pairs
             size_t equals_pos = line.find('=');
-            if (equals_pos == std::string::npos || equals_pos == 0) {
+            if (equals_pos == std::string::npos) {
                 continue;// Skip lines without equals sign
             }
             std::string key = line.substr(0, equals_pos);
@@ -58,29 +58,62 @@ void ParcerIni::read() {
         std::cout << "\nFile close!\n\n" << std::endl;
     }
 }
+
 std::map<std::string, std::map<std::string, std::string>>  ParcerIni::get_data() const {
    return data_;
 }
+
 void ParcerIni::print_file() const   {
     for (auto const& section : data_) {
         std::cout << "[" << section.first << "]" << std::endl;
         for (auto const& key_value : section.second) {
             if (key_value.second.empty())
             std::cout << key_value.first << " = " << std::endl;
+            if (key_value.first.empty())
+                std::cout << " = " << key_value.second << std::endl;
             else
             std::cout << key_value.first << " = " << key_value.second << std::endl;
         }
         std::cout << std::endl;
-   }
+    }
 }  
+
 void ParcerIni::KeyInHedear(std::string& key) const {
-    for (auto const& section : data_) {
-          std::cout << section.first.find(key) << "=" << section.second.find(key) << std::endl;   
-               
-            
-       std::cout << std::endl;
+    auto it = data_.begin();
+    while (it != data_.end()) {
+        auto subMapIt = it->second.find(key);
+        if (subMapIt != it->second.end()) {
+            // Found key
+            std::string header = it->first;
+            std::cout << "Key " << key << " is in heder " << header << std::endl; 
+            break;
+        }
+       it++;  
+    }
+    if (it == data_.end()) {
+        // Key not found
+        std::cout << "Key " << key << " not found in File" << std::endl;
     }
 }
+
+bool ParcerIni::hasKey(std::string key, std::string filename) {
+    std::ifstream file(filename);
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.empty() || line[0] == ';' || line[0] == '#') {
+            continue;
+        }
+        std::string::size_type pos = line.find('=');
+        if (pos != std::string::npos) {
+            std::string current_key = line.substr(0, pos);
+            if (current_key == key) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 
 
 
