@@ -16,9 +16,10 @@ int main() {
         parc->read();
         parc_ini->get_data();
         parc_ini->print_file();
-        std::string  a = "key1";
+        std::string  a = "mode";
         parc_ini->KeyInHedear(a);
-       std::cout <<  parc_ini->hasKey("key2", "Test2.ini");
+        std::cout <<  parc_ini->hasKey("initialMode", "Test.ini");
+        parc_ini->HedearSearch("Difficulty");
     }
     catch (std::bad_cast& e) {
         std::cerr << e.what() << std::endl;

@@ -8,6 +8,7 @@ public:
 	void print_file() const override;
 	void KeyInHedear(std::string& key) const;
 	bool hasKey(std::string key, std::string filename);
+	void HedearSearch( const std::string& hedear) const;
 	std::map<std::string, std::map<std::string, std::string>> get_data()const;
 
 private:

@@ -108,6 +108,14 @@ bool ParcerIni::hasKey(std::string key, std::string filename) {
     }
     return false;
 }
+void ParcerIni::HedearSearch( const std::string& hedear) const {
+    for (auto it = data_.begin(); it != data_.end(); it++)
+        if(it->first.find("[" + hedear + "]")) {
+            std::cout << "\n\nHedear " << hedear << " found" << std::endl;
+            break;
+        }
+    std::cout << "\n\nHedear " << hedear << " not found in File" << std::endl;
+}
 
 
 
