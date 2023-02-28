@@ -67,11 +67,6 @@ void ParcerIni::print_file() const   {
     for (auto const& section : data_) {
         std::cout << "[" << section.first << "]" << std::endl;
         for (auto const& key_value : section.second) {
-            if (key_value.second.empty())
-            std::cout << key_value.first << " = " << std::endl;
-            if (key_value.first.empty())
-                std::cout << " = " << key_value.second << std::endl;
-            else
             std::cout << key_value.first << " = " << key_value.second << std::endl;
         }
         std::cout << std::endl;
