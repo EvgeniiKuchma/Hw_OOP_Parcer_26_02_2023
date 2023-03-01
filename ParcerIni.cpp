@@ -14,7 +14,7 @@ void ParcerIni::read() {
         else {
             if (input_file.is_open()) {
                 std::cout << "\nFile opening!\n" << std::endl;
-                break;
+               return;
             }
             else 
                 std::cout << "\nFile opening error, please try again: ";
@@ -110,7 +110,7 @@ bool ParcerIni::hasKey( const std::string key,const std::string filename) const 
 }
 void ParcerIni::HedearSearch( const std::string& hedear) const {
     for (auto it = data_.begin(); it != data_.end(); it++)
-        if(it->first.find("[" + hedear + "]")) {
+        if(it->first.find == key) {
             std::cout << "\n\nHedear " << hedear << " found" << std::endl;
             return;
         }
