@@ -6,9 +6,9 @@ class ParcerIni : public I_Parcer
 public:
 	virtual void read() override;
 	void print_file() const override;
-	void KeyInHedear( const std::string& key) const;
-	bool hasKey( const std::string key,const std::string filename) const;
-	void HedearSearch( const std::string& hedear) const;
+	void KeyInHedear(const std::string& key) const;
+	bool hasKey(const std::string key,const std::string filename) const;
+	void HedearSearch(const std::string& hedear) const;
 	void ValueInFile(const std::string& value) const;
 	void ValueInKey(const std::string& key) const;
 	void ChangeValue(const std::string& hedear,const std::string& value, const std::string& key);
