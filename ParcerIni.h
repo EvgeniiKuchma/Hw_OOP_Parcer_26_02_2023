@@ -11,10 +11,13 @@ public:
 	void HedearSearch( const std::string& hedear) const;
 	void ValueInFile(const std::string& value) const;
 	void ValueInKey(const std::string& key) const;
+	void ChangeValue(const std::string& hedear,const std::string& value, const std::string& key);
 	const std::map<std::string, std::map<std::string, std::string>>& get_data() const;
 
 private:
-	std::string line;
-	std::string current_section;
+	std::string key_;
+	std::string value_;
+	std::string line_;
+	std::string current_section_;
 	std::map<std::string, std::map<std::string, std::string>> data_;
 };

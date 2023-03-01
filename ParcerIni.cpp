@@ -24,33 +24,33 @@ void ParcerIni::read() {
         getline(std::cin, name);
         std::cout << std::endl;
     }
-    while (std::getline(input_file, line)) {
+    while (std::getline(input_file, line_)) {
         // Remove leading and trailing whitespace
-        line = std::regex_replace(line, std::regex("^\\s+|\\s+$|#.*|;.*|\\s+"), "");
+        line_ = std::regex_replace(line_, std::regex("^\\s+|\\s+$|#.*|;.*|\\s+"), "");
         // Ignore comments and blank lines
-        if (line.empty() || line[0] == ';' || line[0] == '#') {
+        if (line_.empty() || line_[0] == ';' || line_[0] == '#') {
             continue;
         }
         // Check for section header
-        if (line[0] == '[' && line.back() == ']') {
-            current_section = line.substr(1, line.length() - 2);
+        if (line_[0] == '[' && line_.back() == ']') {
+            current_section_ = line_.substr(1, line_.length() - 2);
         }
         else {
             // Split the line into key-value pairs
-            size_t equals_pos = line.find('=');
+            size_t equals_pos = line_.find('=');
             if (equals_pos == std::string::npos) {
                 continue;// Skip lines without equals sign
             }
-            std::string key = line.substr(0, equals_pos);
-            std::string value = line.substr(equals_pos + 1);
-            if (key.empty()) {
-                std::string value = line.substr(equals_pos + 1);
+            key_ = line_.substr(0, equals_pos);
+            value_ = line_.substr(equals_pos + 1);
+            if (key_.empty()) {
+                 value_ = line_.substr(equals_pos + 1);
 
-            } if (value.empty()) {
-                std::string key = line.substr(0, equals_pos);
+            } if (value_.empty()) {
+                 key_ = line_.substr(0, equals_pos);
             }
             // Add the key-value pair to the map
-            data_[current_section][key] = value;
+            data_[current_section_][key_] = value_;
         }
     }
     input_file.close();
@@ -138,9 +138,31 @@ void ParcerIni::ValueInKey(const std::string& key) const {
             }  
         }
     }
-    std::cout << "\nKey not found!" << std::endl;
+    std::cout << "\nKey not found!\n" << std::endl;
 }
 
+void ParcerIni::ChangeValue(const std::string& hedear,const std::string& value, const std::string& key) {
+    for (const auto& section : data_){
+        for (const auto& key_value : section.second) { 
+             if(section.first==hedear){
+                data_ [section.first][key_value.second] = value;
+                std::cout << '[' << section.first << ']' << std::endl;
+                std::cout << key_value.first << " = " << value << std::endl;
+                return;
+             }
+             else {
+                 current_section_ = hedear;
+                 key_ = key;
+                 data_[current_section_][key_] = value;
+                 std::cout << '[' << current_section_ << ']' << std::endl;
+                 std::cout << key_ << " = " << value << std::endl;
+                 return;
+             }
+        }
+    } 
+    
+}
+           
 
 
 

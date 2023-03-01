@@ -22,6 +22,8 @@ int main() {
         parc_ini->ValueInFile("easy");
         parc_ini->ValueInKey("ColorSpace");
         parc_ini->ValueInKey("........");
+        parc_ini->ChangeValue("Controls", "Button", "Key_num");
+        parc_ini->ChangeValue("MySection", "MyValue", "MayKey");
     }
     catch (std::bad_cast& e) {
         std::cerr << e.what() << std::endl;
