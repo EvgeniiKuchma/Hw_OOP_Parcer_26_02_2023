@@ -108,9 +108,9 @@ bool ParcerIni::hasKey( const std::string key,const std::string filename) const 
     }
     return false;
 }
-void ParcerIni::HedearSearch( const std::string& hedear) const {
+void ParcerIni::HedearSearch( const std::string& hedear) const {//1)ERROR FROM WORD "Difficulty"
     for (auto it = data_.begin(); it != data_.end(); it++)
-        if(it->first == key) {
+        if(it->first == key_) {
             std::cout << "\n\nHedear " << hedear << " found" << std::endl;
             return;
         }
@@ -162,8 +162,11 @@ void ParcerIni::ChangeValue(const std::string& hedear,const std::string& value, 
     } 
     
 }
-           
-
+//1)ERROR FROM WORD "Difficulty"
+//        
+//2)  NOT INPUT HEDER WHO NOT HAVE KEY=VALUE FILD
+//
+//3)NOT HAVE FUNTION WRITING TO FILE
 
 
 
